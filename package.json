@@ -1,0 +1,34 @@
+{
+  "name": "seal-wasm",
+  "version": "0.0.1",
+  "description": "A WASM package of Needleman-Wunsch & Smith-Waterman sequence alignment.",
+  "main": "build/index.js",
+  "directories": {
+    "build": "build"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-types": "tsc",
+    "build-types-watch": "tsc --watch",
+    "build-js": "node ./build.js",
+    "build-js-watch": "node ./build.js --watch",
+    "build-html": "npx copyfiles -f ./src/*.html ./build",
+    "build-html-watch": "nodemon -e .html --watch \"./src\" --exec \"npm run build-html\"",
+    "build-rust": "wasm-pack build",
+    "build-rust-watch": "nodemon -e .rs --watch \"./src\" --exec \"npm run build-rust\"",
+    "serve": "npx http-server ./build",
+    "build": "npm run build-rust && npm run build-js && npm run build-types",
+    "dev": "concurrently \"npm run build-rust-watch\" \"npm run build-types-watch\" \"npm run build-js-watch\" \"npm run build-html-watch\" \"npm run serve\""
+  },
+  "author": "Banou26",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^7.0.0",
+    "copyfiles": "^2.4.1",
+    "esbuild": "^0.14.25",
+    "esbuild-plugin-wasm": "^1.0.0",
+    "http-server": "^14.1.0",
+    "nodemon": "^2.0.15",
+    "typescript": "^4.6.2"
+  }
+}
