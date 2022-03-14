@@ -5,5 +5,6 @@ require('esbuild').build({
   format: 'esm',
   bundle: true,
   outfile: './build/index.js',
+  publicPath: '/',
   plugins: [require('esbuild-plugin-wasm').default()],
 }).catch(() => process.exit(1))
