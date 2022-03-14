@@ -30,6 +30,8 @@ pub struct Args {
     del: isize,
 }
 
+// todo: replace this with https://rustwasm.github.io/wasm-bindgen/reference/arbitrary-data-with-serde.html#an-alternative-approach-serde-wasm-bindgen
+
 #[wasm_bindgen]
 impl Args {
     #[wasm_bindgen(constructor)]
