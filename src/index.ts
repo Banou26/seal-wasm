@@ -23,9 +23,3 @@ const makeAlign = (name: 'smithwaterman' | 'needlemanwunsch') => (leftStr: strin
 export const swAlign = makeAlign('smithwaterman')
 
 export const nwAlign = makeAlign('needlemanwunsch')
-
-const p = performance.now()
-const result = swAlign('The quick brown fox jumps over the lazy dog.', 'The brown dog jumps over the very lazy snail.', { alignment: 'local', equal: 2, align: -1, insert: -1, delete: -1 })
-console.log(`result`, result)
-console.log(`time: ${performance.now() - p}`)
-
