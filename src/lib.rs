@@ -24,16 +24,16 @@ macro_rules! console_log {
 pub struct Args {
     name: String,
     alignment: String,
-    equal: i32,
-    align: i32,
-    insert: i32,
-    del: i32,
+    equal: isize,
+    align: isize,
+    insert: isize,
+    del: isize,
 }
 
 #[wasm_bindgen]
 impl Args {
     #[wasm_bindgen(constructor)]
-    pub fn new(name: &str, alignment: &str, equal: i32, align: i32, insert: i32, del: i32) -> Args {
+    pub fn new(name: &str, alignment: &str, equal: isize, align: isize, insert: isize, del: isize) -> Args {
         Args {
             name: name.to_string(),
             alignment: alignment.to_string(),
@@ -63,38 +63,38 @@ impl Args {
     }
 
     #[wasm_bindgen(getter = equal)]
-    pub fn equal(&self) -> i32 {
+    pub fn equal(&self) -> isize {
         self.equal
     }
     #[wasm_bindgen(setter = equal)]
-    pub fn set_equal(&mut self, equal: i32) {
+    pub fn set_equal(&mut self, equal: isize) {
         self.equal = equal;
     }
 
     #[wasm_bindgen(getter = align)]
-    pub fn align(&self) -> i32 {
+    pub fn align(&self) -> isize {
         self.align
     }
     #[wasm_bindgen(setter = align)]
-    pub fn set_align(&mut self, align: i32) {
+    pub fn set_align(&mut self, align: isize) {
         self.align = align;
     }
 
     #[wasm_bindgen(getter = insert)]
-    pub fn insert(&self) -> i32 {
+    pub fn insert(&self) -> isize {
         self.insert
     }
     #[wasm_bindgen(setter = insert)]
-    pub fn set_insert(&mut self, insert: i32) {
+    pub fn set_insert(&mut self, insert: isize) {
         self.insert = insert;
     }
 
     #[wasm_bindgen(getter = del)]
-    pub fn del(&self) -> i32 {
+    pub fn del(&self) -> isize {
         self.del
     }
     #[wasm_bindgen(setter = del)]
-    pub fn set_del(&mut self, del: i32) {
+    pub fn set_del(&mut self, del: isize) {
         self.del = del;
     }
 }
@@ -106,13 +106,13 @@ pub struct AlignmentResult {
     original_right: String,
     aligned_left: String,
     aligned_right: String,
-    score: i32
+    score: isize
 }
 
 #[wasm_bindgen]
 impl AlignmentResult {
     #[wasm_bindgen(constructor)]
-    pub fn new(representation: &str, original_left: &str, original_right: &str, aligned_left: &str, aligned_right: &str, score: i32) -> AlignmentResult {
+    pub fn new(representation: &str, original_left: &str, original_right: &str, aligned_left: &str, aligned_right: &str, score: isize) -> AlignmentResult {
         AlignmentResult {
             representation: representation.to_string(),
             original_left: original_left.to_string(),
@@ -169,18 +169,17 @@ impl AlignmentResult {
     }
 
     #[wasm_bindgen(getter = score)]
-    pub fn score(&self) -> i32 {
+    pub fn score(&self) -> isize {
         self.score
     }
     #[wasm_bindgen(setter = score)]
-    pub fn set_score(&mut self, score: i32) {
+    pub fn set_score(&mut self, score: isize) {
         self.score = score;
     }
 }
 
 #[wasm_bindgen]
 pub fn align(left_str: &str, right_str: &str, args: &Args) -> AlignmentResult {
-
     fn _align<S: Strategy> (left_str: &str, right_str: &str, args: &Args, strategy: S) -> AlignmentResult {
         let seq_left: Vec<char> = left_str.chars().collect();
         let seq_right: Vec<char> = right_str.chars().collect();
