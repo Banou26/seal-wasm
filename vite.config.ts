@@ -1,7 +1,4 @@
 import { defineConfig } from 'vite'
-import wasm from 'vite-plugin-wasm'
-import topLevelAwait from 'vite-plugin-top-level-await'
-import typescript2 from 'rollup-plugin-typescript2'
 
 export default defineConfig((env) => ({
   build: {
@@ -13,9 +10,5 @@ export default defineConfig((env) => ({
       entry: 'src/index.ts',
       formats: ['es']
     }
-  },
-  plugins: [
-    wasm(),
-    topLevelAwait()
-  ]
+  }
 }))
