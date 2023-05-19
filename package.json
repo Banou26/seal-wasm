@@ -1,6 +1,6 @@
 {
   "name": "seal-wasm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A WASM package of Needleman-Wunsch & Smith-Waterman sequence alignment.",
   "main": "build/index.js",
   "type": "module",
