@@ -1,5 +1,3 @@
-import { align, Args } from '../pkg/rust_seal'
-
 export type Options = {
   alignment: 'global' | 'local'
   equal: number,
@@ -8,7 +6,8 @@ export type Options = {
   delete: number
 }
 
-const makeAlign = (name: 'smithwaterman' | 'needlemanwunsch') => (leftStr: string, rightStr: string, { alignment, equal, align: _align, insert, delete: del }: Options) => {
+const makeAlign = (name: 'smithwaterman' | 'needlemanwunsch') => async (leftStr: string, rightStr: string, { alignment, equal, align: _align, insert, delete: del }: Options) => {
+  const { align, Args } = await import('../pkg/rust_seal')
   const res = align(leftStr, rightStr, new Args(name, alignment, equal, _align, insert, del))
   return {
     representation: res.representation,
